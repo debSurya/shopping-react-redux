@@ -13,7 +13,7 @@ class App extends React.Component {
       products: data.products,
       size: '',
       sort: '',
-      cartItems: []
+      cartItems: !!localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
     };
   }
 
@@ -29,7 +29,7 @@ class App extends React.Component {
             (a._id < b._id ? 1 : -1)
           ))
     }));
-  }
+  };
 
   filterProducts = (event) => {
     if (event.target.value === '') {
@@ -44,7 +44,7 @@ class App extends React.Component {
           .filter((product) => product.availableSizes.indexOf(event.target.value) >= 0)
       });
     }
-  }
+  };
 
   addToCart = (product) => {
     const cartItems = this.state.cartItems.slice();
@@ -61,7 +61,8 @@ class App extends React.Component {
     this.setState({
       cartItems
     });
-  }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  };
 
   removeFromCart = (product) => {
     const cartItems = this.state.cartItems.slice();
@@ -69,7 +70,13 @@ class App extends React.Component {
       cartItems: cartItems
         .filter((item) => item._id !== product._id)
     });
-  }
+    localStorage.setItem('cartItems', JSON.stringify(cartItems
+      .filter((item) => item._id !== product._id)));
+  };
+
+  createOrder = (order) => {
+    alert('Save!!')
+  };
 
   render() {
     return (
@@ -92,7 +99,8 @@ class App extends React.Component {
             </div>
             <div className="sidebar">
               <Cart cartItems={this.state.cartItems}
-                removeFromCart={this.removeFromCart}></Cart>
+                removeFromCart={this.removeFromCart}
+                createOrder={this.createOrder}></Cart>
             </div>
           </div>
         </main>
