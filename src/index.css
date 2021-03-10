@@ -14,8 +14,7 @@ body,
 body,
 input,
 select,
-button
-textarea {
+button textarea {
   font-size: 1.6rem;
   font-family: Monsterrat, Arial, Helvetica, sans-serif;
 }
@@ -37,7 +36,7 @@ header {
   padding: 0.5rem;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -132,4 +131,16 @@ footer {
 
 .button:hover {
   border: 0.1rem #8080c0 solid;
+}
+
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem grey solid;
+}
+
+.filter div {
+  flex: 1;
 }
