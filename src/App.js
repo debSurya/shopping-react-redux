@@ -14,8 +14,6 @@ class App extends React.Component {
     super();
     this.state = {
       products: data.products,
-      size: '',
-      sort: '',
       cartItems: !!localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
     };
   }

@@ -7,11 +7,11 @@ class Filters extends Component {
         return (
             !this.props.filteredProducts ? <div>Loading....</div> : (
                 <div className="filter">
-                    <div className="filter-result">{this.props.count} Products</div>
+                    <div className="filter-result">{this.props.filteredProducts.length} Products</div>
                     <div className="filter-sort">
                         Order {" "}
                         <select value={this.props.sort} onChange={(event) => this.props.sortProducts(this.props.filteredProducts, event.target.value)}>
-                            <option>Latest</option>
+                            <option value="latest">Latest</option>
                             <option value="lowest">Lowest</option>
                             <option value="highest">Highest</option>
                         </select>
