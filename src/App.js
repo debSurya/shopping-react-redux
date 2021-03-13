@@ -20,35 +20,6 @@ class App extends React.Component {
     };
   }
 
-  sortProducts = (event) => {
-    const sort = event.target.value;
-    this.setState((state) => ({
-      sort,
-      products: state.products.slice()
-        .sort((a, b) => sort === 'lowest' ?
-          (a.price > b.price ? 1 : -1) :
-          (sort === 'highest' ?
-            (a.price < b.price ? 1 : -1) :
-            (a._id < b._id ? 1 : -1)
-          ))
-    }));
-  };
-
-  filterProducts = (event) => {
-    if (event.target.value === '') {
-      this.setState({
-        size: event.target.value,
-        products: data.products
-      });
-    } else {
-      this.setState({
-        size: event.target.value,
-        products: data.products
-          .filter((product) => product.availableSizes.indexOf(event.target.value) >= 0)
-      });
-    }
-  };
-
   addToCart = (product) => {
     const cartItems = this.state.cartItems.slice();
     let alreadyInCart = false;
@@ -91,14 +62,8 @@ class App extends React.Component {
           <main>
             <div className="content">
               <div className="main">
-                <Filters count={this.state.products.length}
-                  size={this.state.size}
-                  sort={this.state.sort}
-                  filterProducts={this.filterProducts}
-                  sortProducts={this.sortProducts}
-                ></Filters>
-                <Products products={this.state.products}
-                  addToCart={this.addToCart}
+                <Filters></Filters>
+                <Products addToCart={this.addToCart}
                 ></Products>
               </div>
               <div className="sidebar">
